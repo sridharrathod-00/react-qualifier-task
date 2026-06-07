@@ -1,20 +1,31 @@
 @import "tailwindcss";
 
+/* Base layout rules for all devices */
 html, body, #root {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #f8fafc; /* light slate background for desktop space */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
   font-family: system-ui, -apple-system, sans-serif;
-  overflow: hidden;
+  background-color: #ffffff;
 }
 
-@media (max-width: 768px) {
+/* 🖥️ Desktop Configuration: Apply frame centering ONLY on screens wider than a phone */
+@media (min-width: 768px) {
   html, body, #root {
-    background-color: #ffffff; /* standard full fluid backdrop matching app context */
+    background-color: #f1f5f9; /* Slate gray canvas behind the phone mockup */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Lock desktop screen container */
   }
+}
+
+/* Clean UI utility class to hide scrollbar tracks if needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

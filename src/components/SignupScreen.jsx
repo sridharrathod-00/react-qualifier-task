@@ -20,7 +20,7 @@ function SignupScreen() {
           Create your <br />PopX account
         </h2>
         <p className="text-xs text-slate-400 mt-1 mb-6">
-          Provide your profile details to join us.
+          Provide your verification profile parameters to join the workspace network.
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
@@ -46,13 +46,14 @@ function SignupScreen() {
             </div>
           ))}
 
+          {/* Radio Group Selection */}
           <div className="mt-1 w-full">
             <span className="text-xs font-semibold text-slate-700 block mb-2">
               Are you an Agency? <span className="text-rose-500">*</span>
             </span>
             <div className="flex gap-6 items-center">
               {["yes", "no"].map((option) => (
-                <label key={option} className="flex items-center gap-2 text-sm text-slate-800 capitalize cursor-pointer">
+                <label key={option} className="flex items-center gap-2 text-sm text-slate-800 capitalize cursor-pointer group">
                   <input
                     type="radio"
                     name="isAgency"
@@ -61,7 +62,7 @@ function SignupScreen() {
                     onChange={(e) => setFormData({ ...formData, isAgency: e.target.value })}
                     className="w-4 h-4 text-violet-600 focus:ring-violet-500 accent-violet-600 cursor-pointer"
                   />
-                  <span>{option}</span>
+                  <span className="group-hover:text-violet-600 transition-colors">{option}</span>
                 </label>
               ))}
             </div>
@@ -71,7 +72,7 @@ function SignupScreen() {
 
       <button
         onClick={handleSubmit}
-        className="w-full mt-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-xl text-sm transition-colors cursor-pointer text-center"
+        className="w-full mt-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-xl text-sm transition-colors cursor-pointer text-center active:scale-[0.99] shadow-md shadow-violet-600/10"
       >
         Create Account
       </button>

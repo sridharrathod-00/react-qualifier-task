@@ -10,9 +10,15 @@ function LoginScreen() {
     e.preventDefault();
     if (!email) return;
     
+    // Smooth navigation passing authenticated state context cleanly
     navigate("/profile", { 
       state: { 
-        user: { fullName: "Sridhar Rathod", email: email, company: "Infoz IT Solutions", isAgency: "yes" } 
+        user: { 
+          fullName: "Marvin McKinney", 
+          email: email, 
+          company: "Enterprise Design Solutions", 
+          isAgency: "yes" 
+        } 
       } 
     });
   };
@@ -24,10 +30,11 @@ function LoginScreen() {
           Signin to your <br />PopX account
         </h2>
         <p className="text-xs text-slate-400 mt-1 mb-8">
-          Enter your registered login details.
+          Enter your corporate credentials below to access your workspace dashboard.
         </p>
 
         <form onSubmit={handleLogin} className="flex flex-col gap-5 w-full">
+          {/* Email Field */}
           <div className="relative w-full">
             <input
               type="email"
@@ -42,6 +49,7 @@ function LoginScreen() {
             </label>
           </div>
 
+          {/* Password Field */}
           <div className="relative w-full">
             <input
               type="password"
@@ -60,7 +68,7 @@ function LoginScreen() {
 
       <button
         onClick={handleLogin}
-        className="w-full py-3 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-xl text-sm transition-colors cursor-pointer text-center"
+        className="w-full py-3 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-xl text-sm transition-colors cursor-pointer text-center active:scale-[0.99] shadow-md shadow-violet-600/10"
       >
         Login
       </button>
