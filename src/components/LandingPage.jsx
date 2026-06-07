@@ -1,38 +1,45 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ShieldAlert } from 'lucide-react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const LandingPage = () => {
+function LandingPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col h-full justify-between items-center text-center">
-      <div className="my-auto flex flex-col items-center">
-        <div className="bg-purple-100 p-5 rounded-full inline-block mb-6">
-          <ShieldAlert className="w-12 h-12 text-purple-600" />
+    <div className="flex flex-col flex-1 justify-between py-4">
+      {/* Top Section: Branding & Graphics */}
+      <div className="flex flex-col items-center text-center mt-4">
+        <div className="flex items-center gap-2 mb-6">
+          <div className="w-10 h-10 bg-brand-accent rounded-xl flex items-center justify-center shadow-lg shadow-brand-accent/20">
+            <span className="text-white font-black text-xl">X</span>
+          </div>
+          <span className="text-2xl font-black tracking-tight text-brand-dark">PopX</span>
         </div>
-        <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Welcome to PopX</h1>
-        <p className="text-slate-500 text-sm px-4 leading-relaxed">
-          Manage your creative agency projects, collaborate with team milestones, and view production data on a clean mobile dashboard layout.
+        
+        <h1 className="text-2xl font-bold text-brand-dark px-2">
+          Welcome to PopX
+        </h1>
+        <p className="text-sm text-slate-500 mt-2 max-w-[280px]">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
 
-      <div className="w-full mb-2">
-        <button 
-          className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3.5 rounded-xl text-base font-bold shadow-md transition-all active:scale-[0.99]"
-          onClick={() => navigate('/signup')}
+      {/* Bottom Section: Fluid Action Buttons */}
+      <div className="flex flex-col gap-3 w-full mb-2">
+        <button
+          onClick={() => navigate("/signup")}
+          className="w-full py-3.5 bg-brand-accent hover:bg-brand-accent/95 text-white font-semibold rounded-xl shadow-lg shadow-brand-accent/20 active:scale-[0.99] transition-all cursor-pointer text-sm"
         >
           Create Account
         </button>
-        <button 
-          className="w-full bg-purple-100 hover:bg-purple-200 text-purple-700 py-3.5 rounded-xl text-base font-bold transition-all mt-3"
-          onClick={() => navigate('/login')}
+        <button
+          onClick={() => navigate("/login")}
+          className="w-full py-3.5 bg-brand-light hover:bg-slate-200 text-brand-dark font-semibold rounded-xl active:scale-[0.99] transition-all cursor-pointer text-sm"
         >
           Already Registered? Login
         </button>
       </div>
     </div>
   );
-};
+}
 
 export default LandingPage;

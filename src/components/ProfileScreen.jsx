@@ -1,48 +1,77 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Camera, LogOut } from 'lucide-react';
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const ProfileScreen = () => {
-  const navigate = useNavigate();
+function ProfileScreen() {
   const location = useLocation();
-
-  const userName = location.state?.name || "Marvin McKinney";
-  const userEmail = location.state?.email || "marvin.mckinney@example.com";
+  const navigate = useNavigate();
+  
+  // Clean fallback context reading standard form inputs securely
+  const user = location.state?.user || {
+    fullName: "Sridhar Rathod",
+    email: "sridharrathod.dev@gmail.com",
+    company: "Infoz IT Solutions",
+    isAgency: "yes",
+  };
 
   return (
-    <div className="flex flex-col h-full">
-      <h2 className="text-lg font-bold text-slate-800 border-b border-slate-100 pb-4 mb-5">Account Settings</h2>
-      
-      <div className="flex items-center gap-4 mb-6">
-        <div className="relative">
-          <img 
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120&q=80" 
-            alt="Avatar" 
-            className="w-[76px] h-[76px] rounded-full object-cover"
-          />
-          <div className="absolute bottom-0 right-0 bg-purple-600 p-1.5 rounded-full border border-white flex cursor-pointer hover:bg-purple-700 transition-colors">
-            <Camera className="w-3 h-3 text-white" />
+    <div className="flex flex-col flex-1 justify-between py-2">
+      <div>
+        {/* Header Block Section */}
+        <div className="border-b border-slate-100 pb-4 mb-5">
+          <h2 className="text-xl font-bold text-brand-dark">Account Profile</h2>
+        </div>
+
+        {/* Info Layout Matrix */}
+        <div className="flex items-start gap-4 mb-6">
+          <div className="relative flex-shrink-0">
+            <div className="w-16 h-16 bg-slate-100 rounded-full border-2 border-white shadow-md flex items-center justify-center overflow-hidden">
+              <span className="text-xl font-bold text-slate-400">SR</span>
+            </div>
+            <div className="absolute bottom-0 right-0 w-5 h-5 bg-brand-accent rounded-full border-2 border-white flex items-center justify-center shadow">
+              <span className="text-[10px] text-white font-bold">✓</span>
+            </div>
+          </div>
+
+          <div className="pt-1 min-w-0 flex-1">
+            <h3 className="text-base font-bold text-brand-dark truncate">
+              {user.fullName}
+            </h3>
+            <p className="text-xs text-slate-500 truncate mt-0.5">
+              {user.email}
+            </p>
           </div>
         </div>
-        <div>
-          <h3 className="text-base font-black text-slate-900">{userName}</h3>
-          <p className="text-slate-500 text-sm mt-0.5">{userEmail}</p>
+
+        {/* Context Card Block */}
+        <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex flex-col gap-3.5">
+          <div>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+              Professional Affiliation
+            </span>
+            <span className="text-sm font-semibold text-brand-dark mt-0.5 block">
+              {user.company || "Not Specified"}
+            </span>
+          </div>
+          <div>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+              Agency Operations status
+            </span>
+            <span className="text-sm font-semibold text-brand-dark mt-0.5 block capitalize">
+              {user.isAgency === "yes" ? "Registered Agency Partner" : "Individual Professional"}
+            </span>
+          </div>
         </div>
       </div>
 
-      <p className="text-sm text-slate-600 leading-relaxed border-b border-dashed border-slate-200 pb-6 mb-6">
-        Welcome to your profile console workspace. Here you can configure system security criteria, verify connected endpoints, modify active enterprise plans, and handle team access permissions.
-      </p>
-
-      <button 
-        onClick={() => navigate('/')} 
-        className="flex items-center justify-center gap-2 bg-red-50 text-red-500 hover:bg-red-100 transition-colors py-3.5 rounded-xl text-base font-bold w-full mt-auto mb-2"
+      {/* Logout Navigation */}
+      <button
+        onClick={() => navigate("/")}
+        className="w-full mt-6 py-3.5 bg-rose-50 hover:bg-rose-100 text-rose-600 font-semibold rounded-xl active:scale-[0.99] transition-all cursor-pointer text-sm text-center"
       >
-        <LogOut className="w-4 h-4" />
-        Log Out
+        Sign Out
       </button>
     </div>
   );
-};
+}
 
 export default ProfileScreen;
