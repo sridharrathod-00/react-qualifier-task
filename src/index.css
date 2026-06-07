@@ -1,28 +1,20 @@
 @import "tailwindcss";
 
-@theme {
-  --color-brand-light: #ececef;
-  --color-brand-dark: #1d2226;
-  --color-brand-accent: #6c25e2;
-}
-
-@utility no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-/* This is the magic snippet that centers your phone in the browser */
-html, body {
+html, body, #root {
   margin: 0;
   padding: 0;
   width: 100vw;
   height: 100vh;
+  background-color: #f8fafc; /* light slate background for desktop space */
   display: flex;
-  align-items: center;     /* Centers vertically */
-  justify-content: center;   /* Centers horizontally */
-  background-color: #f1f5f9; /* Soft slate gray backdrop to pop the phone design */
-  overflow: hidden;         /* Prevents awkward desktop browser scrollbars */
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  html, body, #root {
+    background-color: #ffffff; /* standard full fluid backdrop matching app context */
+  }
 }
